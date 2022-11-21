@@ -1,3 +1,14 @@
+<!-- Kirsten Kurniadi, ID: 30045816
+Date: 21/11/2022
+Assessment Task Three (Team Project)
+Member Login Page -->
+<?php
+session_start();
+if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
+    header("location: index.php");
+    exit;
+}
+?>
 <!doctype html>
 <html lang="en">
 <!--Head START. Replace with include_once(head.php) when uploading to server. -->
