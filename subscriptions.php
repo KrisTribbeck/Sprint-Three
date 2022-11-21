@@ -36,7 +36,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == false) {
         $database = new Connection();
         $db = $database->open();
         try{	
-            $sql = 'SELECT Id, FullName, Email, Newsletter, Newsflash, DeleteAccount, IsAdmin FROM MembershipDatabase';
+            $sql = "SELECT Newsletter, Newsflash FROM MembershipDatabase WHERE Email = ".$_SESSION['inputEmail'];
             foreach ($db->query($sql) as $row) {
                  ?>
                  <tr>
@@ -58,7 +58,6 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == false) {
          $database->close();
      ?>
     <!--FINISH PHP-->
-        <input class="form-control me-2" type="text" name="search" name="submit" placeholder="Search" aria-label="Search">
         <button class="btn btn-success" type="submit">Update</button>
         </form>
 <!--Search Bar Finish -->
