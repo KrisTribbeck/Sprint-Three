@@ -24,10 +24,10 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == false) {
     <?php
 	  include_once('inc_nav.php');
     ?>
-    <h1>Hello, <?php echo $_SESSION["fullName"]; ?></h1>
+    <h1>Hello, <?php echo $_SESSION["inputName"]; ?></h1>
     <!--Start of table.-->
     <div class="container-fluid" id="containerStyle">
-        <p>Subscription settings for <?php echo $_SESSION["email"]; ?>:</p>
+        <p>Subscription settings for <?php echo $_SESSION["inputEmail"]; ?>:</p>
       <!--Testing Search bar Start, Added action attribte for CrudTest....1) Original File name="InsertValuesTest.php, -->
         <form class="d-flex mt-3" action="updateSubscription.php" method="POST" enctype="multipart/form-data">
         <!--PHP START-->
