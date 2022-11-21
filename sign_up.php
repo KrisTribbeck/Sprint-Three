@@ -25,12 +25,12 @@ include_once("head.php")
                 </div>
                 <div class="mb-3">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="checkRemember">
-                        <label class="form-check-label" for="checkRemember">Subscribe to the monthly newsletter</label>
+                        <input class="form-check-input" type="checkbox" id="checkNewsletter">
+                        <label class="form-check-label" for="checkNewsletter">Subscribe to the monthly newsletter</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="checkRemember">
-                        <label class="form-check-label" for="checkRemember">Subscribe to breaking news updates</label>
+                        <input class="form-check-input" type="checkbox" id="checkNewsflash">
+                        <label class="form-check-label" for="checkNewsflash">Subscribe to breaking news updates</label>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-success">Register</button>
