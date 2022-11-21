@@ -26,7 +26,7 @@ include_once("head.php")
                 <button type="submit" class="btn btn-success">Sign in</button>
                 <div>
                     <label class="form-label" for="newToAcme">New to Acme?</label><br>
-                    <a href="sign_up.html" class="link-primary">Sign up here</a>
+                    <a href="sign_up.php" class="link-primary">Sign up here</a>
                 </div>
             </form>
         </div>
