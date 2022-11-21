@@ -1,0 +1,10 @@
+.mb-3{
+    width: 15%;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+.form-label{
+    padding-top: 2%;
+    text-align: left;
+    font-size: medium; 
+}
