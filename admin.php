@@ -24,14 +24,15 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['isAdmin'] == 'n'){
     <?php
 	  include_once('inc_nav.php');
     ?>
-  <!--Start of table.-->
+    <h2>Admin</h2>
   <div class="container-fluid" id="containerStyle">
       <!--Testing Search bar Start, Added action attribte for CrudTest....1) Original File name="InsertValuesTest.php, -->
   <form class="d-flex mt-3" role="search" action="admin.php" method="GET">
-        <input class="form-control me-2" type="text" name="search" placeholder="Search" aria-label="Search">
+        <input class="form-control me-2" type="text" name="search" placeholder="Search by email address" aria-label="Search">
         <button class="btn btn-success" type="submit">Search</button>
     </form>
 <!--Search Bar Finish -->
+ <!--Start of table.-->
     <table class="table table-hover" style="margin-top:20px;">
       <thead class="table-secondary">
 		<th>ID</th>
