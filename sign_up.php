@@ -7,6 +7,7 @@ require_once("connection.php");
 $fullName = $email = $newsletter = $newsflash = '';
 $name_err = $email_err = '';
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
+    // Validate name
     $input_name = trim($_POST["inputName"]);
     if(empty($input_name)){
         $name_err = "Please enter a name.";
@@ -15,6 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     } else{
         $fullName = $input_name;
     }
+    // Validate email
     $input_email = trim($_POST["inputEmail"]);
     $emailPattern = "^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$^";
     if(empty($input_email)){
@@ -24,8 +26,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     } else{
         $email = $input_email;
     }
+    // Assign checkbox values based on set status
+    if(isset($_POST["checkNewsletter"])){
+        $newsletter = 'y';
+    } else{
+        $newsletter = 'n';
+    }
+    if(isset($_POST["checkNewsflash"])){
+        $newsflash = 'y';
+    } else{
+        $newsflash = 'n';
+    }
+    // Check errors before inserting into database
+    if(empty($name_err) && empty($email_err)){
+        $details[] = [
+            'FullName' => $fullName,
+            'Email' => $email,
+            'Newsletter' => $newsletter,
+            'Newsflash' => $newsflash
+        ];
+        $sql = "INSERT INTO MembershipDatabase (FullName, Email, Newsletter, Newsflash)
+        VALUES(:FullName, :Email, :Newsletter, :Newsflash)";
+        foreach ($details as $details){
+            $stmt = $db->prepare($sql);
+            $stmt->execute($details);
+        }
+    }
 }
-if(isset($_POST["checkNewsletter"]))
+
 ?>
 <!doctype html>
 <html lang="en">
