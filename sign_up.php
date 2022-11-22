@@ -76,11 +76,13 @@ include_once("head.php")
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
                 <div class="mb-3">
                     <label class="form-label" for="inputName">Name</label>
-                    <input type="text" class="form-control" id="inputName" placeholder="Name" required="required">
+                    <input type="text" class="form-control <?php echo (!empty($name_err)) ? 'is-invalid' : '';?>" id="inputName" placeholder="Name">
+                    <span class="invalid-feedback"><?php echo $name_err;?></span>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="inputEmail">Email Address</label>
-                    <input type="email" class="form-control" id="inputEmail" placeholder="Email" required="required">
+                    <input type="email" class="form-control<?php echo (!empty($email_err)) ? 'is-invalid' : '';?>" id="inputEmail" placeholder="Email">
+                    <span class="invalid-feedback"><?php echo $email_err;?></span>
                 </div>
                 <div class="mb-3">
                     <div class="form-check">
