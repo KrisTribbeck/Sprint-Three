@@ -43,7 +43,7 @@ include_once("head.php")
     <div class="container-fluid" id="containerStyle">
         <div class="p-3 my-3 border border-dark rounded">
             <h2>Sign up</h2>
-            <form>
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
                 <div class="mb-3">
                     <label class="form-label" for="inputName">Name</label>
                     <input type="text" class="form-control" id="inputName" placeholder="Name" required="required">
