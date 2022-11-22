@@ -39,6 +39,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     }
     // Check errors before inserting into database
     if(empty($name_err) && empty($email_err)){
+        $emailCheck = "SELECT * FROM MembershipDatabase WHERE Email = '{$email}'";
+        $rowCount = $db->prepare($emailCheck);
         $details[] = [
             'FullName' => $fullName,
             'Email' => $email,
