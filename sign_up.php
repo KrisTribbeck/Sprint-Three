@@ -2,6 +2,17 @@
 Date: 21/11/2022
 Assessment Task Three (Team Project)
 Member Sign Up Page -->
+<?php
+require_once("connection.php");
+$fullName = $email = $newsletter = $newsflash = '';
+$name_err = $email_err = '';
+if ($_SERVER["REQUEST_METHOD"] == "POST"){
+    if(empty(trim($_POST["inputName"]))){
+        $name_err = "Please enter a name";
+    }
+}
+if(isset($_POST["checkNewsletter"]))
+?>
 <!doctype html>
 <html lang="en">
 <!--Head START. Replace with include_once(head.php) when uploading to server. -->
@@ -29,11 +40,11 @@ include_once("head.php")
                 </div>
                 <div class="mb-3">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="checkNewsletter">
+                        <input class="form-check-input" type="checkbox" id="checkNewsletter" value="y">
                         <label class="form-check-label" for="checkNewsletter">Subscribe to the monthly newsletter</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="checkNewsflash">
+                        <input class="form-check-input" type="checkbox" id="checkNewsflash" value="y">
                         <label class="form-check-label" for="checkNewsflash">Subscribe to breaking news updates</label>
                     </div>
                 </div>

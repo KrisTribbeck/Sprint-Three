@@ -54,13 +54,13 @@ require_once('connection.php');
         <form class="d-flex mt-3" action="updateSubscription.php" method="POST" enctype="multipart/form-data">
         <div class="mb-3">
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="checkNewsletter" <?php echo ($newsletter == 'y') ? 'checked' : ''; ?>>
+                <input class="form-check-input" type="checkbox" id="checkNewsletter" value="y" <?php echo ($newsletter == 'y') ? ' checked' : ''; ?>>
                 <label class="form-check-label" for="checkNewsletter">Monthly newsletter</label>
             </div>
         </div>
         <div class="mb-3">
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="checkNewsflash" <?php echo ($newsflash == 'y') ? 'checked' : ''; ?>>
+                <input class="form-check-input" type="checkbox" id="checkNewsflash" value="y" <?php echo ($newsflash == 'y') ? ' checked' : ''; ?>>
                 <label class="form-check-label" for="checkNewsflash">Breaking news updates</label>
             </div>
         </div>
