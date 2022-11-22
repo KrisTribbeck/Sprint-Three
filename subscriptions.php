@@ -37,19 +37,15 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == false) {
         $db = $database->open();
         try{	
             $sql = "SELECT Newsletter, Newsflash FROM MembershipDatabase WHERE Email = ".$_SESSION['inputEmail'];
-            foreach ($db->query($sql) as $row) {
-                 ?>
-                 <tr>
-					 <td><?php echo $row['Id']; ?></td>
-                     <td><?php echo $row['FullName']; ?></td>
-                     <td><?php echo $row['Email']; ?></td>
-                     <td><?php echo strtoupper($row['Newsletter']); ?></td>
-                     <td><?php echo strtoupper($row['Newsflash']); ?></td>
-                     <td><?php echo strtoupper($row['DeleteAccount']); ?></td>
-                     <td><?php echo strtoupper($row['IsAdmin']); ?></td>
-                 </tr>
-                 <?php 
-             }
+            if ($stmt = $db->prepare($sql)){
+                if($stmt->execute()){
+                    if($stmt->rowCount() == 1){
+                        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                        $newsletter = $row["Newsletter"];
+                        $newsflash = $row["Newsflash"];
+                    }
+                }
+            }
          }
          catch(PDOException $e){
              echo "There is some problem in connection: " . $e->getMessage();
