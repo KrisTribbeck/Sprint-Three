@@ -7,8 +7,22 @@ require_once("connection.php");
 $fullName = $email = $newsletter = $newsflash = '';
 $name_err = $email_err = '';
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
-    if(empty(trim($_POST["inputName"]))){
-        $name_err = "Please enter a name";
+    $input_name = trim($_POST["inputName"]);
+    if(empty($input_name)){
+        $name_err = "Please enter a name.";
+    } elseif(!preg_match('/^[a-zA-Z\s]+$/', $input_name)){
+        $name_err = "Please enter a valid name.";
+    } else{
+        $fullName = $input_name;
+    }
+    $input_email = trim($_POST["inputEmail"]);
+    $emailPattern = "^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$^";
+    if(empty($input_email)){
+        $email_err = "Please enter an email address.";
+    } elseif(!preg_match($emailPattern, $input_email)){
+        $email_err = "Please enter a valid email address.";
+    } else{
+        $email = $input_email;
     }
 }
 if(isset($_POST["checkNewsletter"]))
