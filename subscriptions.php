@@ -15,7 +15,7 @@ require_once('connection.php');
  $database = new Connection();
  $db = $database->open();
  try{	
-     $sql = "SELECT Newsletter, Newsflash FROM MembershipDatabase WHERE Email = ".$_SESSION['inputEmail'];
+     $sql = "SELECT Newsletter, Newsflash FROM MembershipDatabase WHERE Email = ".$_SESSION['email'];
      if ($stmt = $db->prepare($sql)){
          if($stmt->execute()){
              if($stmt->rowCount() == 1){
@@ -49,7 +49,8 @@ require_once('connection.php');
     <h1>Hello, <?php echo $_SESSION["name"]; ?></h1>
     <!--Start of table.-->
     <div class="container-fluid" id="containerStyle">
-        <p>Subscription settings for <?php echo $_SESSION["email"]; ?>:</p>
+        <h4>Subscription Settings</h4>
+        <p>Here you can adjust your active subscriptions for <?php echo $_SESSION["email"]; ?>:</p>
       <!--Testing Search bar Start, Added action attribte for CrudTest....1) Original File name="InsertValuesTest.php, -->
         <form class="d-flex mt-3" action="updateSubscription.php" method="POST" enctype="multipart/form-data">
         <div class="mb-3">
@@ -65,6 +66,11 @@ require_once('connection.php');
             </div>
         </div>
         <button class="btn btn-success" type="submit">Update subscription</button>
+        </form>
+        <h4>Unsubscribe</h4>
+        <p>If you no longer wish to receive any updates from Acme Art Gallery, please click Unsubscribe</p>
+        <form class="d-flex mt-3" action="unsubscribe.php" method="POST">
+            <button class="btn"></button>
         </form>
 <!--Search Bar Finish -->
   </div>
