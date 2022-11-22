@@ -9,6 +9,28 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == false) {
     header("location: login.php");
     exit;
 }
+$newsletter = $newsflash = '';
+require_once('connection.php');
+ //include our connection
+ $database = new Connection();
+ $db = $database->open();
+ try{	
+     $sql = "SELECT Newsletter, Newsflash FROM MembershipDatabase WHERE Email = ".$_SESSION['inputEmail'];
+     if ($stmt = $db->prepare($sql)){
+         if($stmt->execute()){
+             if($stmt->rowCount() == 1){
+                 $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                 $newsletter = $row["Newsletter"];
+                 $newsflash = $row["Newsflash"];
+             }
+         }
+     }
+  }
+  catch(PDOException $e){
+      echo "There is some problem in connection: " . $e->getMessage();
+  }
+  //close connection
+  $database->close();
 ?>
 <!-- FINISH PHP-->
 <!doctype html>
@@ -30,31 +52,19 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == false) {
         <p>Subscription settings for <?php echo $_SESSION["inputEmail"]; ?>:</p>
       <!--Testing Search bar Start, Added action attribte for CrudTest....1) Original File name="InsertValuesTest.php, -->
         <form class="d-flex mt-3" action="updateSubscription.php" method="POST" enctype="multipart/form-data">
-        <!--PHP START-->
-        <?php
-         //include our connection
-        $database = new Connection();
-        $db = $database->open();
-        try{	
-            $sql = "SELECT Newsletter, Newsflash FROM MembershipDatabase WHERE Email = ".$_SESSION['inputEmail'];
-            if ($stmt = $db->prepare($sql)){
-                if($stmt->execute()){
-                    if($stmt->rowCount() == 1){
-                        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-                        $newsletter = $row["Newsletter"];
-                        $newsflash = $row["Newsflash"];
-                    }
-                }
-            }
-         }
-         catch(PDOException $e){
-             echo "There is some problem in connection: " . $e->getMessage();
-         }
-         //close connection
-         $database->close();
-     ?>
-    <!--FINISH PHP-->
-        <button class="btn btn-success" type="submit">Update</button>
+        <div class="mb-3">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="checkNewsletter" <?php echo ($newsletter == 'y') ? 'checked' : ''; ?>>
+                <label class="form-check-label" for="checkNewsletter">Monthly newsletter</label>
+            </div>
+        </div>
+        <div class="mb-3">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="checkNewsflash" <?php echo ($newsflash == 'y') ? 'checked' : ''; ?>>
+                <label class="form-check-label" for="checkNewsflash">Breaking news updates</label>
+            </div>
+        </div>
+        <button class="btn btn-success" type="submit">Update subscription</button>
         </form>
 <!--Search Bar Finish -->
   </div>
