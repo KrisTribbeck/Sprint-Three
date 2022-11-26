@@ -4,7 +4,7 @@ Assessment Task Three (Team Project)
 Member Login Page -->
 <?php
 session_start();
-if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
     header("location: index.php");
     exit;
 }
@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $db = $database->open();
     if (empty($name_err) && empty($email_err)) {
         $sql = "SELECT FullName, Email, IsAdmin FROM MembershipDatabase WHERE Email = '{$email}'";
-        if ($stmt = $db->prepare($sql)){
+        if ($stmt = $db->prepare($sql)) {
             if ($stmt->execute()) {
                 if ($stmt->rowCount() == 1) {
                     $row = $stmt->fetch();
@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION["isAdmin"] = $row["IsAdmin"];
                     header("location: subscriptions.php");
                 } else {
-                    $email_err = "This email is not registered";
+                    $login_err = "No login found for this address";
                 }
             }
         }
@@ -66,6 +66,15 @@ include_once("head.php")
     <div class="container-fluid" id="containerStyle">
         <div class="p-3 my-3 border border-dark rounded">
             <h2>Login</h2>
+            <?php
+            if (!empty($login_err)) {
+            ?>
+                <div class="alert alert-danger" role="alert">
+                    <?php echo $login_err; ?>
+                </div>
+            <?php
+            }
+            ?>
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
                 <div class="mb-3">
                     <label class="form-label" for="inputEmail">Email</label>
