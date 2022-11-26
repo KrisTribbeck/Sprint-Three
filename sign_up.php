@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $emailCheck = $db->prepare($emailSql);
         if ($emailCheck->execute()) {
             if ($emailCheck->rowCount() == 1) {
-                $registration_err = "This email is already registered";
+                $email_err = "This email is already registered";
             } else {
                 try {
                     $details[] = [
@@ -85,6 +85,15 @@ include_once("head.php")
     <div class="container-fluid" id="containerStyle">
         <div class="p-3 my-3 border border-dark rounded">
             <h2>Sign up</h2>
+            <?php
+            if (!empty($registration_err)) {
+            ?>
+                <div class="alert alert-danger" role="alert">
+                    <?php echo $registration_err; ?>
+                </div>
+            <?php
+            }
+            ?>
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
                 <div class="mb-3">
                     <label class="form-label" for="inputName">Name</label>
