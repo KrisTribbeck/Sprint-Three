@@ -5,7 +5,7 @@ Member Sign Up Page -->
 <?php
 require_once("connection.php");
 $fullName = $email = $newsletter = $newsflash = '';
-$name_err = $email_err = '';
+$name_err = $email_err = $registration_err = '';
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate name
     $input_name = trim($_POST["inputName"]);
@@ -38,24 +38,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         $newsflash = 'n';
     }
     // Check errors before inserting into database
+    $database = new Connection();
+    $db = $database->open();
     if(empty($name_err) && empty($email_err)){
-        $emailCheck = "SELECT * FROM MembershipDatabase WHERE Email = '{$email}'";
-        $rowCount = $db->prepare($emailCheck);
-        $details[] = [
-            'FullName' => $fullName,
-            'Email' => $email,
-            'Newsletter' => $newsletter,
-            'Newsflash' => $newsflash
-        ];
-        $sql = "INSERT INTO MembershipDatabase (FullName, Email, Newsletter, Newsflash)
-        VALUES(:FullName, :Email, :Newsletter, :Newsflash)";
-        foreach ($details as $details){
-            $stmt = $db->prepare($sql);
-            $stmt->execute($details);
+        $emailSql = "SELECT * FROM MembershipDatabase WHERE Email = '{$email}'";
+        $emailCheck = $db->prepare($emailSql);
+        if ($emailCheck->execute()){
+            if($emailCheck->rowCount() == 1){
+                $registration_err = "This email is already registered";
+            } else {
+                $details[] = [
+                    'FullName' => $fullName,
+                    'Email' => $email,
+                    'Newsletter' => $newsletter,
+                    'Newsflash' => $newsflash
+                ];
+                $sql = "INSERT INTO MembershipDatabase (FullName, Email, Newsletter, Newsflash)
+                VALUES(:FullName, :Email, :Newsletter, :Newsflash)";
+                foreach ($details as $details){
+                    $stmt = $db->prepare($sql);
+                    $stmt->execute($details);
+                }
+            }
         }
     }
+    $database->close();
 }
-
 ?>
 <!doctype html>
 <html lang="en">
