@@ -8,6 +8,37 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true){
     header("location: index.php");
     exit;
 }
+require_once("connection.php");
+$email = '';
+$email_err = $login_err = '';
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Validate email
+    $input_email = trim($_POST["inputEmail"]);
+    $emailPattern = "^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$^";
+    if (empty($input_email)) {
+        $email_err = "Please enter an email address.";
+    } elseif (!preg_match($emailPattern, $input_email)) {
+        $email_err = "Please enter a valid email address.";
+    } else {
+        $email = $input_email;
+    }
+    // Check errors before inserting into database
+    $database = new Connection();
+    $db = $database->open();
+    if (empty($name_err) && empty($email_err)) {
+        $sql = "SELECT * FROM MembershipDatabase WHERE Email = '{$email}'";
+        if ($stmt = $db->prepare($sql)){
+            if ($stmt->execute()) {
+                if ($stmt->rowCount() == 1) {
+                    $row = $stmt->fetch();
+                } else {
+                    $email_err = "This email is not registered";
+                }
+            }
+        }
+    }
+    $database->close();
+}
 ?>
 <!doctype html>
 <html lang="en">
