@@ -60,6 +60,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $stmt = $db->prepare($sql);
                         $stmt->execute($details);
                     }
+                    session_start();
+                    $_SESSION["loggedin"] = true;
+                    $_SESSION["name"] = $fullName;
+                    $_SESSION["email"] = $email;
+                    header("location: index.php");
                 } catch (PDOException $e) {
                     $registration_err = $e->getMessage();
                 }

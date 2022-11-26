@@ -32,6 +32,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if ($stmt->rowCount() == 1) {
                     $row = $stmt->fetch();
                     session_start();
+                    $_SESSION["loggedin"] = true;
+                    $_SESSION["name"] = $row["FullName"];
+                    $_SESSION["email"] = $row["Email"];
+                    $_SESSION["isAdmin"] = $row["IsAdmin"];
+                    header("location: subscriptions.php");
                 } else {
                     $email_err = "This email is not registered";
                 }
