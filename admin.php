@@ -5,7 +5,7 @@ Member Subscription Page -->
 <!-- START PHP -->
 <?php 
 session_start();
-if(!isset($_SESSION['loggedin']) || $_SESSION['isAdmin'] == 'n'){
+if(!isset($_SESSION['loggedin']) || !isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] == 'n'){
     header("location: index.php");
     exit;
 }
