@@ -6,7 +6,7 @@ Member Subscription Page -->
 <?php 
 session_start();
 if(!isset($_SESSION['loggedin']) || $_SESSION['isAdmin'] == 'n'){
-    http_response_code(403);
+    header("location: index.php");
     exit;
 }
 ?>
