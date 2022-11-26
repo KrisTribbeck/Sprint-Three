@@ -26,11 +26,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $database = new Connection();
     $db = $database->open();
     if (empty($name_err) && empty($email_err)) {
-        $sql = "SELECT * FROM MembershipDatabase WHERE Email = '{$email}'";
+        $sql = "SELECT FullName, Email, IsAdmin FROM MembershipDatabase WHERE Email = '{$email}'";
         if ($stmt = $db->prepare($sql)){
             if ($stmt->execute()) {
                 if ($stmt->rowCount() == 1) {
                     $row = $stmt->fetch();
+                    session_start();
                 } else {
                     $email_err = "This email is not registered";
                 }
@@ -63,7 +64,8 @@ include_once("head.php")
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
                 <div class="mb-3">
                     <label class="form-label" for="inputEmail">Email</label>
-                    <input type="email" class="form-control" id="inputEmail" placeholder="Email" required="required">
+                    <input type="email" class="form-control <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" id="inputEmail" placeholder="Email" required="required">
+                    <span class="invalid-feedback"><?php echo $email_err; ?></span>
                 </div>
                 <button type="submit" class="btn btn-success">Sign in</button>
                 <div>
