@@ -6,58 +6,62 @@ Member Sign Up Page -->
 require_once("connection.php");
 $fullName = $email = $newsletter = $newsflash = '';
 $name_err = $email_err = $registration_err = '';
-if ($_SERVER["REQUEST_METHOD"] == "POST"){
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validate name
     $input_name = trim($_POST["inputName"]);
-    if(empty($input_name)){
+    if (empty($input_name)) {
         $name_err = "Please enter a name.";
-    } elseif(!preg_match('/^[a-zA-Z\s]+$/', $input_name)){
+    } elseif (!preg_match('/^[a-zA-Z\s]+$/', $input_name)) {
         $name_err = "Please enter a valid name.";
-    } else{
+    } else {
         $fullName = $input_name;
     }
     // Validate email
     $input_email = trim($_POST["inputEmail"]);
     $emailPattern = "^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$^";
-    if(empty($input_email)){
+    if (empty($input_email)) {
         $email_err = "Please enter an email address.";
-    } elseif(!preg_match($emailPattern, $input_email)){
+    } elseif (!preg_match($emailPattern, $input_email)) {
         $email_err = "Please enter a valid email address.";
-    } else{
+    } else {
         $email = $input_email;
     }
     // Assign checkbox values based on set status
-    if(isset($_POST["checkNewsletter"])){
+    if (isset($_POST["checkNewsletter"])) {
         $newsletter = 'y';
-    } else{
+    } else {
         $newsletter = 'n';
     }
-    if(isset($_POST["checkNewsflash"])){
+    if (isset($_POST["checkNewsflash"])) {
         $newsflash = 'y';
-    } else{
+    } else {
         $newsflash = 'n';
     }
     // Check errors before inserting into database
     $database = new Connection();
     $db = $database->open();
-    if(empty($name_err) && empty($email_err)){
+    if (empty($name_err) && empty($email_err)) {
         $emailSql = "SELECT * FROM MembershipDatabase WHERE Email = '{$email}'";
         $emailCheck = $db->prepare($emailSql);
-        if ($emailCheck->execute()){
-            if($emailCheck->rowCount() == 1){
+        if ($emailCheck->execute()) {
+            if ($emailCheck->rowCount() == 1) {
                 $registration_err = "This email is already registered";
             } else {
-                $details[] = [
-                    'FullName' => $fullName,
-                    'Email' => $email,
-                    'Newsletter' => $newsletter,
-                    'Newsflash' => $newsflash
-                ];
-                $sql = "INSERT INTO MembershipDatabase (FullName, Email, Newsletter, Newsflash)
-                VALUES(:FullName, :Email, :Newsletter, :Newsflash)";
-                foreach ($details as $details){
-                    $stmt = $db->prepare($sql);
-                    $stmt->execute($details);
+                try {
+                    $details[] = [
+                        'FullName' => $fullName,
+                        'Email' => $email,
+                        'Newsletter' => $newsletter,
+                        'Newsflash' => $newsflash
+                    ];
+                    $sql = "INSERT INTO MembershipDatabase (FullName, Email, Newsletter, Newsflash)
+                    VALUES(:FullName, :Email, :Newsletter, :Newsflash)";
+                    foreach ($details as $details) {
+                        $stmt = $db->prepare($sql);
+                        $stmt->execute($details);
+                    }
+                } catch (PDOException $e) {
+                    $registration_err = $e->getMessage();
                 }
             }
         }
@@ -81,16 +85,16 @@ include_once("head.php")
     <div class="container-fluid" id="containerStyle">
         <div class="p-3 my-3 border border-dark rounded">
             <h2>Sign up</h2>
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
                 <div class="mb-3">
                     <label class="form-label" for="inputName">Name</label>
-                    <input type="text" class="form-control <?php echo (!empty($name_err)) ? 'is-invalid' : '';?>" id="inputName" placeholder="Name">
-                    <span class="invalid-feedback"><?php echo $name_err;?></span>
+                    <input type="text" class="form-control <?php echo (!empty($name_err)) ? 'is-invalid' : ''; ?>" id="inputName" placeholder="Name">
+                    <span class="invalid-feedback"><?php echo $name_err; ?></span>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="inputEmail">Email Address</label>
-                    <input type="email" class="form-control<?php echo (!empty($email_err)) ? 'is-invalid' : '';?>" id="inputEmail" placeholder="Email">
-                    <span class="invalid-feedback"><?php echo $email_err;?></span>
+                    <input type="email" class="form-control<?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" id="inputEmail" placeholder="Email">
+                    <span class="invalid-feedback"><?php echo $email_err; ?></span>
                 </div>
                 <div class="mb-3">
                     <div class="form-check">
