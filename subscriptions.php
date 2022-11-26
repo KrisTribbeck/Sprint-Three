@@ -11,6 +11,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == false) {
 }
 $newsletter = $newsflash = '';
 require_once('connection.php');
+$subscription_err = '';
  //include our connection
  $database = new Connection();
  $db = $database->open();
@@ -27,7 +28,7 @@ require_once('connection.php');
      }
   }
   catch(PDOException $e){
-      echo "There is some problem in connection: " . $e->getMessage();
+      $subscription_err =  "Could not fetch subscriptions: " . $e->getMessage();
   }
   //close connection
   $database->close();
