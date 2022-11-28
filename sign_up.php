@@ -3,6 +3,11 @@ Date: 21/11/2022
 Assessment Task Three (Team Project)
 Member Sign Up Page -->
 <?php
+session_start();
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+    header("location: index.php");
+    exit;
+}
 require_once("connection.php");
 $fullName = $email = $newsletter = $newsflash = '';
 $name_err = $email_err = $registration_err = '';
