@@ -54,7 +54,7 @@ include_once("head.php")
                 </div>
             <?php
             } else { ?>
-                <p>Subscriptions for <?php echo $_SESSION["email"]; ?> have successfully been updated</p>
+                <p>You have successfully unsubscribed from Acme Art Gallery's mailing list</p>
             <?php } ?>
             <a class="btn btn-success" href="index.php" role="button">Return home</a>
         </div>
