@@ -65,7 +65,15 @@ if (!isset($_SESSION['loggedin']) || !isset($_SESSION['isAdmin']) || $_SESSION['
                                     <td><?php echo $row['Email']; ?></td>
                                     <td><?php echo strtoupper($row['Newsletter']); ?></td>
                                     <td><?php echo strtoupper($row['Newsflash']); ?></td>
-                                    <td><?php echo strtoupper($row['DeleteAccount']); ?></td>
+                                    <td>
+                                        <?php
+                                        if ($row['DeleteAccount'] == 'y') {
+                                            echo '<a class="btn btn-danger" href="delete-user.php?id=' . $row['Id'] . '" role="button">Delete Account</a>';
+                                        } else {
+                                            echo strtoupper($row['DeleteAccount']);
+                                        }
+                                        ?>
+                                    </td>
                                     <td><?php echo strtoupper($row['IsAdmin']); ?></td>
                                 </tr>
                             <?php
@@ -81,7 +89,15 @@ if (!isset($_SESSION['loggedin']) || !isset($_SESSION['isAdmin']) || $_SESSION['
                                     <td><?php echo $row['Email']; ?></td>
                                     <td><?php echo strtoupper($row['Newsletter']); ?></td>
                                     <td><?php echo strtoupper($row['Newsflash']); ?></td>
-                                    <td><?php echo strtoupper($row['DeleteAccount']); ?></td>
+                                    <td>
+                                        <?php
+                                        if ($row['DeleteAccount'] == 'y') {
+                                            echo '<a class="btn btn-danger" href="delete-user.php?id=' . $row['Id'] . '" role="button">Delete Account</a>';
+                                        } else {
+                                            strtoupper($row['DeleteAccount']);
+                                        }
+                                        ?>
+                                    </td>
                                     <td><?php echo strtoupper($row['IsAdmin']); ?></td>
                                 </tr>
                     <?php
