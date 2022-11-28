@@ -79,7 +79,7 @@ include_once("head.php")
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
                 <div class="mb-3">
                     <label class="form-label" for="inputEmail">Email</label>
-                    <input type="email" class="form-control <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" id="inputEmail" placeholder="Email" required="required">
+                    <input type="email" class="form-control <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" name="inputEmail" placeholder="Email">
                     <span class="invalid-feedback"><?php echo $email_err; ?></span>
                 </div>
                 <button type="submit" class="btn btn-success">Sign in</button>
