@@ -30,7 +30,7 @@ include_once("head.php")
             <ul>
                 <li>Sprint 1 - Kristiin Tribbeck - Paintings Section</li>
                 <li>Sprint 2 - Kyle Watson - Artists Section</li>
-                <li>Sprint 3 - Kirsten Kuriniadi - Subscription Services</li>
+                <li>Sprint 3 - Kirsten Kurniadi - Subscription Services</li>
             </ul>
             </p>
         </div>
