@@ -36,7 +36,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION["name"] = $row["FullName"];
                     $_SESSION["email"] = $row["Email"];
                     $_SESSION["isAdmin"] = $row["IsAdmin"];
-                    header("location: subscriptions.php");
+                    if ($_SESSION["isAdmin"] == 'y') {
+                        header("location: admin.php");
+                    } else {
+                        header("location: subscriptions.php");
+                    }
                 } else {
                     $login_err = "No login found for this address";
                 }

@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION["name"] = $fullName;
                     $_SESSION["email"] = $email;
                     $_SESSION["isAdmin"] = 'n';
-                    header("location: index.php");
+                    header("location: subscriptions.php");
                 } catch (PDOException $e) {
                     $registration_err = $e->getMessage();
                 }
