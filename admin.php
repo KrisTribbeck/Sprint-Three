@@ -71,6 +71,7 @@ if (!isset($_SESSION['loggedin']) || !isset($_SESSION['isAdmin']) || $_SESSION['
                             <?php
                             }
                         } else {
+                            $search = $_GET["search"];
                             $sql = "SELECT * FROM MembershipDatabase WHERE Email LIKE '%$search%'";
                             foreach ($db->query($sql) as $row) {
                             ?>
