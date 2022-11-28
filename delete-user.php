@@ -3,6 +3,11 @@ Date: 28/11/2022
 Assessment Task Three (Team Project)
 Delete User Page -->
 <?php
+session_start();
+if (!isset($_SESSION['loggedin']) || !isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] == 'n') {
+    header("location: index.php");
+    exit;
+}
 if (isset($_POST["id"]) && !empty($_POST["id"])) {
     $delete_err = '';
     require_once("connection.php");
@@ -22,6 +27,11 @@ if (isset($_POST["id"]) && !empty($_POST["id"])) {
         $delete_err = "Could not delete user: " + $e->getMessage();
     }
     $database->close();
+} else {
+    if(empty(trim($_GET["id"]))){
+        header("location: error.php");
+        exit();
+    }
 }
 ?>
 <!DOCTYPE html>
