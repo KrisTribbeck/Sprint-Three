@@ -69,14 +69,12 @@ $database->close();
                             <input class="form-check-input" type="checkbox" name="checkNewsletter" <?php echo ($newsletter == 'y') ? ' checked' : ''; ?>>
                             <label class="form-check-label" for="checkNewsletter">Monthly newsletter</label>
                         </div>
-                    </div>
-                    <div class="mb-3">
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="checkNewsflash" <?php echo ($newsflash == 'y') ? ' checked' : ''; ?>>
                             <label class="form-check-label" for="checkNewsflash">Breaking news updates</label>
                         </div>
+                        <button class="btn btn-success" type="submit">Update subscription</button>
                     </div>
-                    <button class="btn btn-success" type="submit">Update subscription</button>
                 </form>
                 <h4>Unsubscribe</h4>
                 <p>If you no longer wish to receive any updates from Acme Art Gallery, please click Unsubscribe</p>
