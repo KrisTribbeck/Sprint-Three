@@ -80,9 +80,7 @@ $database->close();
                 </form>
                 <h4>Unsubscribe</h4>
                 <p>If you no longer wish to receive any updates from Acme Art Gallery, please click Unsubscribe</p>
-                <form class="d-flex mt-3" action="unsubscribe.php" method="POST">
-                    <button class="btn btn-success" type="submit">Unsubscribe</button>
-                </form>
+                <a class="btn btn-danger" href="unsubscribe.php" role="button">Unsubscribe</a>
             <?php
             }
             ?>
