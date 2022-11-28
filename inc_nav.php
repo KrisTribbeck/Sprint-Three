@@ -20,7 +20,7 @@
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><?php echo $_SESSION["email"]; ?></a>
                         <ul class="dropdown-menu">
                             <?php
-                            if ($_SESSION["isAdmin"]) { ?>
+                            if (isset($_SESSION["isAdmin"]) && $_SESSION["isAdmin"] == true) { ?>
                                 <li><a class="dropdown-item" href="admin.php">Admin</a></li>
                                 <li><hr class="dropdown-divider"></li>
                             <?php } ?>
