@@ -51,41 +51,41 @@ $database->close();
     ?>
     <div class="container-fluid" id="containerStyle">
         <div class="p-3 my-3 border border-dark rounded">
-        <h1>Subscription Settings</h1>
-        <?php
-        if (!empty($subscription_err)) {
-        ?>
-            <div class="alert alert-danger" role="alert">
-                <?php echo $subscription_err; ?>
-            </div>
-        <?php
-        } else {
-        ?>
-            <h4>Hello, <?php echo $_SESSION["name"]; ?></h4>
-            <p>Here you can adjust your active subscriptions for <?php echo $_SESSION["email"]; ?>:</p>
-            <form class="d-flex mt-3" action="updateSubscription.php" method="POST" enctype="multipart/form-data">
-                <div class="mb-3">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="checkNewsletter" <?php echo ($newsletter == 'y') ? ' checked' : ''; ?>>
-                        <label class="form-check-label" for="checkNewsletter">Monthly newsletter</label>
-                    </div>
+            <h1>Subscription Settings</h1>
+            <?php
+            if (!empty($subscription_err)) {
+            ?>
+                <div class="alert alert-danger" role="alert">
+                    <?php echo $subscription_err; ?>
                 </div>
-                <div class="mb-3">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="checkNewsflash" <?php echo ($newsflash == 'y') ? ' checked' : ''; ?>>
-                        <label class="form-check-label" for="checkNewsflash">Breaking news updates</label>
+            <?php
+            } else {
+            ?>
+                <h4>Hello, <?php echo $_SESSION["name"]; ?></h4>
+                <p>Here you can adjust your active subscriptions for <?php echo $_SESSION["email"]; ?>:</p>
+                <form class="d-flex mt-3" action="updateSubscription.php" method="POST" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="checkNewsletter" <?php echo ($newsletter == 'y') ? ' checked' : ''; ?>>
+                            <label class="form-check-label" for="checkNewsletter">Monthly newsletter</label>
+                        </div>
                     </div>
-                </div>
-                <button class="btn btn-success" type="submit">Update subscription</button>
-            </form>
-            <h4>Unsubscribe</h4>
-            <p>If you no longer wish to receive any updates from Acme Art Gallery, please click Unsubscribe</p>
-            <form class="d-flex mt-3" action="unsubscribe.php" method="POST">
-                <button class="btn"></button>
-            </form>
-        <?php
-        }
-        ?>
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="checkNewsflash" <?php echo ($newsflash == 'y') ? ' checked' : ''; ?>>
+                            <label class="form-check-label" for="checkNewsflash">Breaking news updates</label>
+                        </div>
+                    </div>
+                    <button class="btn btn-success" type="submit">Update subscription</button>
+                </form>
+                <h4>Unsubscribe</h4>
+                <p>If you no longer wish to receive any updates from Acme Art Gallery, please click Unsubscribe</p>
+                <form class="d-flex mt-3" action="unsubscribe.php" method="POST">
+                    <button class="btn btn-success" type="submit">Unsubscribe</button>
+                </form>
+            <?php
+            }
+            ?>
         </div>
     </div>
     <?php
