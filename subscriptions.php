@@ -16,7 +16,8 @@ $subscription_err = '';
 $database = new Connection();
 $db = $database->open();
 try {
-    $sql = "SELECT Newsletter, Newsflash FROM MembershipDatabase WHERE Email = " . $_SESSION['email'];
+    $email = $_SESSION['email'];
+    $sql = "SELECT Newsletter, Newsflash FROM MembershipDatabase WHERE Email = '$email'";
     if ($stmt = $db->prepare($sql)) {
         if ($stmt->execute()) {
             if ($stmt->rowCount() == 1) {
