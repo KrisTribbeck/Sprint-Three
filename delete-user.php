@@ -24,7 +24,7 @@ if (isset($_POST["id"]) && !empty($_POST["id"])) {
             }
         }
     } catch (PDOException $e) {
-        $delete_err = "Could not delete user: " + $e->getMessage();
+        $delete_err = "Could not delete user: " . $e->getMessage();
     }
     $database->close();
 } else {
