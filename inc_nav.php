@@ -7,9 +7,8 @@
         </button>
         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
             <div class="navbar-nav">
-            <?php
-            if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == false) { ?>
-                
+                <?php
+                if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == false) { ?>
                     <div class="nav-item dropdown">
                         <a href="member_login.php" class="nav-item nav-link">Login</a>
                     </div>
@@ -17,13 +16,13 @@
                         <a href="sign_up.php" class="nav-item nav-link">Sign-up</a>
                     </div>
                 <?php } else { ?>
-                    <li class="nav-item dropdown">
+                    <div class="nav-item dropdown">
                         <a class="nav-link dropdown toggle" href="#" role="button" data-bs-toggle="dropdown"><?php echo $_SESSION["email"]; ?></a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="subscriptions.php">Manage Subscriptions</a></li>
                             <li><a class="dropdown-item" href="logout.php">Logout</a></li>
                         </ul>
-                    </li>
+                </div>
                 <?php } ?>
             </div>
         </div>
