@@ -1,3 +1,7 @@
+<!-- Kirsten Kurniadi, ID: 30045816
+Date: 28/11/2022
+Assessment Task Three (Team Project)
+Delete User Page -->
 <?php
 if (isset($_POST["id"]) && !empty($_POST["id"])) {
     require_once("connection.php");
