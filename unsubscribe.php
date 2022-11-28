@@ -8,23 +8,22 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == false) {
     header("location: member_login.php");
     exit;
 }
+$unsubscribe_err = '';
 require_once("connection.php");
 $database = new Connection();
 $db = $database->open();
 // Update subscriptions for the given user
 try {
     $email = $_SESSION['email'];
-    $details[] = [
-        'Newsletter' => $newsletter,
-        'Newsflash' => $newsflash
-    ];
-    $sql = "UPDATE MembershipDatabase SET Newsletter = :Newsletter, Newsflash = :Newsflash WHERE Email = '$email'";
-    foreach ($details as $details) {
-        $stmt = $db->prepare($sql);
-        $stmt->execute($details);
+    $sql = "UPDATE MembershipDatabase SET DeleteAccount = 'y' WHERE Email = '$email'";
+    if ($stmt = $db->prepare($sql)) {
+        if ($stmt->execute()) {
+            $_SESSION = array();
+            session_destroy();
+        }
     }
 } catch (PDOException $e) {
-    $update_err = "Could not update subscriptions: " . $e->getMessage();
+    $unsubscribe_err = "Could not update subscriptions: " . $e->getMessage();
 }
 $database->close();
 ?>
@@ -48,17 +47,16 @@ include_once("head.php")
         <div class="p-3 my-3 border border-dark rounded">
             <h2>Update Subscriptions</h2>
             <?php
-            if (!empty($update_err)) {
+            if (!empty($unsubscribe_err)) {
             ?>
                 <div class="alert alert-danger" role="alert">
-                    <?php echo $update_err; ?>
+                    <?php echo $unsubscribe_err; ?>
                 </div>
             <?php
-            }
-            ?>
-            <p>Subscriptions for <?php echo $_SESSION["email"]; ?> have successfully been updated</p>
+            } else { ?>
+                <p>Subscriptions for <?php echo $_SESSION["email"]; ?> have successfully been updated</p>
+            <?php } ?>
             <a class="btn btn-success" href="index.php" role="button">Return home</a>
-            <a class="btn btn-secondary" href="subscriptions.php" role="button">Manage subscriptions</a>
         </div>
     </div>
     <!--Into page FINISH.-->
