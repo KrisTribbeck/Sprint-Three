@@ -43,13 +43,15 @@ $database->close();
     include_once('head.php');
     ?>
 </head>
+
 <body>
     <!-- Grey with black text-->
     <?php
     include_once('inc_nav.php');
     ?>
-    <h1>Subscription Settings</h1>
     <div class="container-fluid" id="containerStyle">
+        <div class="p-3 my-3 border border-dark rounded">
+        <h1>Subscription Settings</h1>
         <?php
         if (!empty($subscription_err)) {
         ?>
@@ -61,7 +63,6 @@ $database->close();
         ?>
             <h4>Hello, <?php echo $_SESSION["name"]; ?></h4>
             <p>Here you can adjust your active subscriptions for <?php echo $_SESSION["email"]; ?>:</p>
-            <!--Testing Search bar Start, Added action attribte for CrudTest....1) Original File name="InsertValuesTest.php, -->
             <form class="d-flex mt-3" action="updateSubscription.php" method="POST" enctype="multipart/form-data">
                 <div class="mb-3">
                     <div class="form-check">
@@ -85,8 +86,7 @@ $database->close();
         <?php
         }
         ?>
-
-        <!--Search Bar Finish -->
+        </div>
     </div>
     <?php
     include_once('footer.php');
