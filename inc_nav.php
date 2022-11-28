@@ -10,10 +10,10 @@
         if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == false) {?>
             <div class="navbar-nav">
                 <div class="nav-item dropdown">
-                    <a href="member_login.html" class="nav-item nav-link">Login</a>
+                    <a href="member_login.php" class="nav-item nav-link">Login</a>
                 </div>
                 <div class="navbar-nav">
-                    <a href="sign_up.html" class="nav-item nav-link">Sign-up</a>
+                    <a href="sign_up.php" class="nav-item nav-link">Sign-up</a>
                 </div>
             </div>
         <?php } else{ ?>
