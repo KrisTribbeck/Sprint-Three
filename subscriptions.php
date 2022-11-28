@@ -6,7 +6,7 @@ Member Subscription Page -->
 <?php
 session_start();
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == false) {
-    header("location: login.php");
+    header("location: member_login.php");
     exit;
 }
 $newsletter = $newsflash = '';

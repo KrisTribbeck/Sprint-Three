@@ -4,7 +4,7 @@ $_SESSION = array();
 session_destroy();
 ?>
 <!-- Kirsten Kurniadi, ID: 30045816
-Date: 21/11/2022
+Date: 28/11/2022
 Assessment Task Three (Team Project)
 Logout Page -->
 <!doctype html>
