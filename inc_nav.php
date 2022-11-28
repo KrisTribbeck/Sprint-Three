@@ -6,25 +6,25 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-        <?php
-        if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == false) {?>
-            <div class="navbar-nav">
-                <div class="nav-item dropdown">
-                    <a href="member_login.php" class="nav-item nav-link">Login</a>
-                </div>
+            <?php
+            if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == false) { ?>
                 <div class="navbar-nav">
-                    <a href="sign_up.php" class="nav-item nav-link">Sign-up</a>
+                    <div class="nav-item dropdown">
+                        <a href="member_login.php" class="nav-item nav-link">Login</a>
+                    </div>
+                    <div class="navbar-nav">
+                        <a href="sign_up.php" class="nav-item nav-link">Sign-up</a>
+                    </div>
+                <?php } else { ?>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown toggle" href="#" role="button" data-bs-toggle="dropdown"><?php echo $_SESSION["email"]; ?></a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="subscriptions.php">Manage Subscriptions</a></li>
+                            <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+                        </ul>
+                    </li>
+                <?php } ?>
                 </div>
-            </div>
-        <?php } else{ ?>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown toggle" href="#" role="button" data-bs-toggle="dropdown"><?php echo $_SESSION["email"];?></a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="subscriptions.php">Manage Subscriptions</a></li>
-                    <li><a class="dropdown-item" href="logout.php">Logout</a></li>
-                </ul>
-            </li>
-            <?php }?>   
         </div>
     </div>
 </nav>
