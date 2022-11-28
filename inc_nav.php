@@ -17,7 +17,7 @@
                     </li>
                 <?php } else { ?>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown toggle" href="#" role="button" data-bs-toggle="dropdown"><?php echo $_SESSION["email"]; ?></a>
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><?php echo $_SESSION["email"]; ?></a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="subscriptions.php">Manage Subscriptions</a></li>
                             <li><a class="dropdown-item" href="logout.php">Logout</a></li>
