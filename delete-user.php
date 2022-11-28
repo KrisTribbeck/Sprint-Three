@@ -66,7 +66,7 @@ if (isset($_POST["id"]) && !empty($_POST["id"])) {
                 <p>Are you sure you want to delete this user from the mailing list?</p>
                 <p>
                     <input type="submit" value="Yes" class="btn btn-danger">
-                    <a href="admin.php" class="btn btn-secondary ml-2">No</a>
+                    <a href="admin.php" role="button" class="btn btn-secondary ml-2">No</a>
                 </p>
             </form>
         </div>
