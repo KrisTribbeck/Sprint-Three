@@ -1,7 +1,7 @@
 <!--NAV BAR START. Replace with include_once(inc_nav.php) when uploading to server.-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a href="index.html" class="navbar-brand">Acme Art</a>
+        <a href="index.php" class="navbar-brand">Acme Art</a>
         <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
