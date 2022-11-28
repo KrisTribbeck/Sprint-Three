@@ -78,6 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="en">
 <!--Head START. Replace with include_once(head.php) when uploading to server. -->
 <?php
+$pageName = "Sign Up";
 include_once("head.php")
 ?>
 

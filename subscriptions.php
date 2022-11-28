@@ -38,11 +38,10 @@ $database->close();
 
 <head>
     <?php
+    $pageName = "Manage Subscriptions";
     include_once('head.php');
     ?>
-    <title>Manage Subscriptions | Acme Art Gallery</title>
 </head>
-
 <body>
     <!-- Grey with black text-->
     <?php

@@ -15,9 +15,9 @@ if(!isset($_SESSION['loggedin']) || !isset($_SESSION['isAdmin']) || $_SESSION['i
 <html lang="en">
 <head>
 <?php
+    $pageName = "Admin";
 	include_once('head.php');
 ?>
-<title>Admin | Acme Art Gallery</title>
 </head>
 <body>
     <!-- Grey with black text-->

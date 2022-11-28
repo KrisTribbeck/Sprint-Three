@@ -51,6 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!--Head START. Replace with include_once(head.php) when uploading to server. -->
 
 <?php
+$pageName = "Login";
 include_once("head.php")
 ?>
 
