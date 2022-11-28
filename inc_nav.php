@@ -19,6 +19,11 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"><?php echo $_SESSION["email"]; ?></a>
                         <ul class="dropdown-menu">
+                            <?php
+                            if ($_SESSION["isAdmin"]) { ?>
+                                <li><a class="dropdown-item" href="admin.php">Admin</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                            <?php } ?>
                             <li><a class="dropdown-item" href="subscriptions.php">Manage Subscriptions</a></li>
                             <li><a class="dropdown-item" href="logout.php">Logout</a></li>
                         </ul>
