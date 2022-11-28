@@ -6,6 +6,7 @@ Home Page -->
 <html lang="en">
 <!--Head START. Replace with include_once(head.php) when uploading to server. -->
 <?php
+$pageName = "Home Page";
 include_once("head.php")
 ?>
 <!--HEAD FINISH -->
