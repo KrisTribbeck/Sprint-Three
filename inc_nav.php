@@ -6,9 +6,10 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+            <div class="navbar-nav">
             <?php
             if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == false) { ?>
-                <div class="navbar-nav">
+                
                     <div class="nav-item dropdown">
                         <a href="member_login.php" class="nav-item nav-link">Login</a>
                     </div>
@@ -24,7 +25,7 @@
                         </ul>
                     </li>
                 <?php } ?>
-                </div>
+            </div>
         </div>
     </div>
 </nav>
