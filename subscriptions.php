@@ -39,7 +39,7 @@ $database->close();
 
 <head>
     <?php
-    $pageName = "Manage Subscriptions";
+    $pageName = "Subscription Settings";
     include_once('head.php');
     ?>
 </head>

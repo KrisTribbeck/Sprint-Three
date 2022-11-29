@@ -24,7 +24,7 @@
                                 <li><a class="dropdown-item" href="admin.php">Admin</a></li>
                                 <li><hr class="dropdown-divider"></li>
                             <?php } ?>
-                            <li><a class="dropdown-item" href="subscriptions.php">Manage Subscriptions</a></li>
+                            <li><a class="dropdown-item" href="subscriptions.php">Subscription Settings</a></li>
                             <li><a class="dropdown-item" href="logout.php">Logout</a></li>
                         </ul>
                     </li>
