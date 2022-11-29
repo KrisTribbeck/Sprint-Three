@@ -66,11 +66,11 @@ $database->close();
                 <form class="d-flex mt-3" action="updateSubscription.php" method="POST" enctype="multipart/form-data">
                     <div class="mb-3">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="checkNewsletter" <?php echo ($newsletter == 'y') ? ' checked' : ''; ?>>
+                            <input class="form-check-input" type="checkbox" id="checkNewsletter" name="checkNewsletter" <?php echo ($newsletter == 'y') ? ' checked' : ''; ?>>
                             <label class="form-check-label" for="checkNewsletter">Monthly newsletter</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="checkNewsflash" <?php echo ($newsflash == 'y') ? ' checked' : ''; ?>>
+                            <input class="form-check-input" type="checkbox" id="checkNewsflash" name="checkNewsflash" <?php echo ($newsflash == 'y') ? ' checked' : ''; ?>>
                             <label class="form-check-label" for="checkNewsflash">Breaking news updates</label>
                         </div>
                         <button class="btn btn-success" type="submit">Update subscription</button>
