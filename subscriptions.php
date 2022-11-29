@@ -63,7 +63,7 @@ $database->close();
             ?>
                 <h4>Hello, <?php echo $_SESSION["name"]; ?></h4>
                 <p>Here you can adjust your active subscriptions for <?php echo $_SESSION["email"]; ?>:</p>
-                <form class="d-flex mt-3" action="updateSubscription.php" method="POST" enctype="multipart/form-data">
+                <form action="updateSubscription.php" method="POST" enctype="multipart/form-data">
                     <div class="mb-3">
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" id="checkNewsletter" name="checkNewsletter" <?php echo ($newsletter == 'y') ? ' checked' : ''; ?>>
@@ -73,6 +73,8 @@ $database->close();
                             <input class="form-check-input" type="checkbox" id="checkNewsflash" name="checkNewsflash" <?php echo ($newsflash == 'y') ? ' checked' : ''; ?>>
                             <label class="form-check-label" for="checkNewsflash">Breaking news updates</label>
                         </div>
+                    </div>
+                    <div class="mb-3">
                         <button class="btn btn-success" type="submit">Update subscription</button>
                     </div>
                 </form>
