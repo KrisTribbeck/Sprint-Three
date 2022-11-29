@@ -1,15 +1,17 @@
 <?php
-session_start()
+session_start();
+$_SESSION = array();
+session_destroy();
 ?>
 <!-- Kirsten Kurniadi, ID: 30045816
-Date: 21/11/2022
+Date: 28/11/2022
 Assessment Task Three (Team Project)
-Home Page -->
+Logout Page -->
 <!doctype html>
 <html lang="en">
 <!--Head START. Replace with include_once(head.php) when uploading to server. -->
 <?php
-$pageName = "Home Page";
+$pageName = "Logout";
 include_once("head.php")
 ?>
 <!--HEAD FINISH -->
@@ -23,19 +25,10 @@ include_once("head.php")
     <!--Into page START.-->
     <div class="container-fluid" id="containerStyle">
         <div class="p-3 my-3 border border-dark rounded">
-            <h2>Assessment Three Group Project</h2>
-            <p class="lead">Name: Kristiin Tribbeck, Kyle Watson, Kirsten Kurniadi<br>
-                ID: 30045325<br>
-                Assessment details: Acme Arts has decided to offer a free communications service to people who sign-up
-                with their name and email.
-                A monthly newsletter will be emailed during the last week of each month and a breaking newsflash
-                notification will be sent as significate events occur.
-            <ul>
-                <li>Sprint 1 - Kristiin Tribbeck - Paintings Section</li>
-                <li>Sprint 2 - Kyle Watson - Artists Section</li>
-                <li>Sprint 3 - Kirsten Kurniadi - Subscription Services</li>
-            </ul>
-            </p>
+            <h2>Logout</h2>
+            <p>You have successfully logged out</p>
+            <a class="btn btn-success" href="index.php" role="button">Return home</a>
+            <a class="btn btn-secondary" href="member_login.php" role="button">Log back in</a>
         </div>
     </div>
     <!--Into page FINISH.-->
